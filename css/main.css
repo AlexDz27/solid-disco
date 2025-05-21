@@ -1,0 +1,28 @@
+/** BASE **/
+
+:root {
+  --link-color: #0d6efd;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+a {
+  color: var(--link-color);
+}
+
+/** COMPONENTS **/
+
+.cont {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.main {
+  padding-top: 1rem;
+}
