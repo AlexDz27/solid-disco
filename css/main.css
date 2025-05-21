@@ -203,7 +203,7 @@ header a {
   display: flex;
   justify-content: center;
   column-gap: 225px;
-  margin-bottom: 280px;
+  margin-bottom: 240px;
 }
 @media (max-width: 1087px) {
   .torg-gde-ugodno {
@@ -306,6 +306,11 @@ header a {
 .torg__svg-icon {
   width: 40px;
   height: 40px;
+}
+
+.footer {
+  padding: 64px 24px 64px;
+  margin-bottom: 300px; /* TODO: d */
 }
 
 /** LAYOUT **/
