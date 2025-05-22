@@ -49,3 +49,33 @@ btn.onclick = () => {
 input.addEventListener('keydown', (e) => {
   if (e.key == 'Enter') btn.click()
 })
+
+/** FORM **/
+const form = document.getElementById('form')
+const agreedRow = document.getElementById('agreedRow')
+const agreed = document.getElementById('agreed')
+form.onsubmit = (e) => {
+  e.preventDefault()
+  if (!agreed.checked) {
+    agreedRow.classList.add('form__row--bad')
+    return
+  }
+
+  console.log('able to send form (todo: show error)')
+}
+agreed.addEventListener('change', function() {
+  agreedRow.classList.remove('form__row--bad')
+})
+
+/** OVERLAY **/
+const overlay = document.getElementById('overlay')
+// setTimeout(() => {
+//   overlay.classList.add('overlay--db')
+//   void overlay.offsetWidth
+//   overlay.classList.add('overlay--blur')
+// }, 1000)
+
+/** FETCH **/
+fetch('/server.php')
+  .then(r => r.json())
+  .then(r => console.log(r))
