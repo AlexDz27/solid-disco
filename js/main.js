@@ -50,6 +50,25 @@ input.addEventListener('keydown', (e) => {
   if (e.key == 'Enter') btn.click()
 })
 
+/** FOOTER MOBILE **/
+const footerMobRows = document.querySelectorAll('.footer--mob__row')
+for (const row of footerMobRows) {
+  row.addEventListener('click', () => {
+    const plus = row.querySelector('.plus')
+    const minus = row.querySelector('.minus')
+    const mobList = row.querySelector('.footer--mob__row__list')
+    if (mobList.style.display === 'flex') {
+      mobList.style.display = 'none'
+      plus.style.display = 'inline'
+      minus.style.display = 'none'
+    } else {
+      mobList.style.display = 'flex'
+      plus.style.display = 'none'
+      minus.style.display = 'inline'
+    }
+  })
+}
+
 /** FORM **/
 const form = document.getElementById('form')
 const agreedRow = document.getElementById('agreedRow')
