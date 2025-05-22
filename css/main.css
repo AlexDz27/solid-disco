@@ -10,7 +10,6 @@
   --color-text--on-yellow: #202630;
   --color-vessel: #1e2329;
   --color-third: #848e9c;
-  --color-basic-bg: #181e25;
 }
 
 html {
@@ -313,7 +312,6 @@ header a {
   padding: 64px 24px 64px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  background-color: var(--color-basic-bg);
 }
 .footer-col {
   display: flex;
@@ -347,6 +345,7 @@ header a {
   grid-template-columns: min-content min-content min-content min-content;
   column-gap: 10px;
 }
+.after-footer {display: none;}
 @media (max-width: 992px) {
   .footer {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -355,6 +354,7 @@ header a {
   .footer-col--soc {
     display: none;
   }
+  .after-footer {display: block;}
   .after-footer .footer-col--soc {
     display: grid;
   }
@@ -373,7 +373,7 @@ header a {
   margin-bottom: 51px;
 }
 .footer--mob__row {
-  padding: 8px 0;
+  padding: 15px 0;
 }
 .footer-row-btn svg {
   fill: var(--color-text--primary);
@@ -401,6 +401,26 @@ header a {
   .footer--mob {
     display: block;
   }
+}
+
+.section-form {
+  margin-bottom: 100px;
+}
+
+.copyright {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+.copyright__text {
+  max-width: 230px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+hr {
+  border: 1px solid #2b3139;
+  margin-bottom: 16px;
 }
 
 .overlay {
@@ -439,9 +459,8 @@ header a {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 15px 38px;
 }
 .form__row {
   display: flex;
@@ -449,8 +468,28 @@ header a {
   row-gap: 10px;
   padding-bottom: 5px;
 }
+.form__row {
+  color: #e8e8e8;
+  font-size: 18px;
+}
 .form__row--bad {
   border-bottom: 1px solid #d41f1f;
+}
+.form input {
+  background-color: var(--color-bg);
+  padding: 14px;
+  border: none;
+  color: inherit;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.question::placeholder {
+  color: red;
+}
+button[type="submit"] {
+  background: linear-gradient(11deg, #E78E04 0%, #F6D096 84%, #E78E04 100%), linear-gradient(-88deg, #F3DC65 0%, #F5BB61 100%);
+  padding: 10px;
+  color: #2d2d2d;
 }
 @media (max-width: 762px) {
   .form__title {
@@ -458,6 +497,11 @@ header a {
   }
   .form__subtitle {
     font-size: 18px;
+  }
+}
+@media (max-width: 615px) {
+  #agreedRow {
+    font-size: 14px;
   }
 }
 

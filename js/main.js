@@ -5,11 +5,13 @@ window.addEventListener('popstate', (e) => {
   // Check if moving forward (new state exists and wasn't the previous state)
     if (currentState && currentState !== lastHistoryState) {
         main.style.display = 'none'
+        sectionTorgGdeUgodno.style.display = 'none'
         sectionForm.style.display = 'block'
     } 
     // Else, assume it's a back navigation (or initial load)
     else {
         main.style.display = 'grid'
+        sectionTorgGdeUgodno.style.display = 'flex'
         sectionForm.style.display = 'none'
     }
 
@@ -24,6 +26,7 @@ input.addEventListener('input', function() {
 })
 
 const main = document.getElementById('main')
+const sectionTorgGdeUgodno = document.getElementById('torgGdeUgodno')
 const sectionForm = document.getElementById('form')
 const btn = document.getElementById('btn')
 btn.onclick = () => {
@@ -37,6 +40,7 @@ btn.onclick = () => {
   }
 
   main.style.display = 'none'
+  sectionTorgGdeUgodno.style.display = 'none'
   sectionForm.style.display = 'block'
   window.history.pushState(
       {page: 'withdraw'},
@@ -53,7 +57,8 @@ input.addEventListener('keydown', (e) => {
 /** FOOTER MOBILE **/
 const footerMobRows = document.querySelectorAll('.footer--mob__row')
 for (const row of footerMobRows) {
-  row.addEventListener('click', () => {
+  row.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') return
     const plus = row.querySelector('.plus')
     const minus = row.querySelector('.minus')
     const mobList = row.querySelector('.footer--mob__row__list')
@@ -81,6 +86,14 @@ form.onsubmit = (e) => {
   }
 
   console.log('able to send form (todo: show error)')
+  overlay.classList.add('overlay--db')
+  void overlay.offsetWidth
+  overlay.classList.add('overlay--blur')
+  setTimeout(() => {
+    alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
+    overlay.classList.remove('overlay--db')
+    overlay.classList.remove('overlay--blur')
+  }, 600)
 }
 agreed.addEventListener('change', function() {
   agreedRow.classList.remove('form__row--bad')
