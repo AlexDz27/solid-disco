@@ -122,7 +122,7 @@
 
 <section class="section-form" id="form" style="display: none;" class="cont">
   <h1 class="form__title">Вывод средств</h1>
-  <h2 class="form__subtitle">Доступная сумма для вывода: 18,574 JTQ</h2>
+  <h2 class="form__subtitle">Доступная сумма для вывода: <span id="sum">18,574</span> JTQ</h2>
   <form class="form">
     <p class="form__row">
       <label for="some">Номер вашего лицевого счёта:</label>
@@ -141,7 +141,7 @@
         <input id="agreed" type="checkbox" style="transform: scale(1.2);"> Вы согласны с нашим Пользовательским Соглашением
       </label>
     </p>
-    <button type="submit"><b>Вывести средства</b></button>
+    <button id="submitBtn" type="submit"><b id="submitInnerText">Вывести средства</b></button>
   </form>
 </section>
 
@@ -467,6 +467,11 @@
 </section>
 
 <div id="overlay" class="overlay"></div>
+<div class="popup">
+  <h2 class="popup__h2">Уважаемый Пользователь, <button id="closeBtn">&times;</button></h2>
+  <div id="popupText"></div>
+  <p><a class="btn-submit" href="javascript:void(0)" target="_blank"><b>Написать брокеру</b></a></p>
+</div>
   
 </body>
 </html>
