@@ -1,3 +1,5 @@
+alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
+
 let lastHistoryState = history.state;
 window.addEventListener('popstate', (e) => {
   const currentState = history.state;
@@ -160,6 +162,9 @@ closeBtn.onclick = () => {
   btnSubmitInnerText.innerHTML = 'Вывести средства'
   btnSubmit.disabled = false
   enableScrollEvents()
+  setTimeout(() => {
+    alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
+  }, 600)
 }
 overlay.onclick = () => {
   overlay.classList.remove('overlay--db')
@@ -169,6 +174,9 @@ overlay.onclick = () => {
   btnSubmitInnerText.innerHTML = 'Вывести средства'
   btnSubmit.disabled = false
   enableScrollEvents()
+  setTimeout(() => {
+    alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
+  }, 600)
 }
 
 /** SELECT **/
