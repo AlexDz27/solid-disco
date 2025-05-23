@@ -83,6 +83,20 @@ header a {
   width: 24px;
   height: 24px;
 }
+.link-w-dropdown {
+  position: relative;
+}
+.link-w-dropdown:hover svg {
+  transform: rotate(180deg);
+}
+.link-w-dropdown__dropdown {
+  position: absolute;
+  top: 64px;
+  left: 15px;
+  background-color: #1e2329;
+  padding: 24px;
+  box-shadow: 0px 8px 8px 0px rgba(24,26,32,.08);
+}
 
 .main {
   padding-top: 1rem;
