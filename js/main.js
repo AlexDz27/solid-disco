@@ -1,4 +1,55 @@
-alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
+// alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
+
+/** FETCH **/
+const btc = document.getElementById('btc')
+const eth = document.getElementById('eth')
+const bnb = document.getElementById('bnb')
+const xrp = document.getElementById('xrp')
+const sol = document.getElementById('sol')
+let payload = null
+let gotPayloadTimes = 0
+fetch('/server.php')
+  .then(r => r.json())
+  .then(r => {
+    if (r.status === 'ERR') {
+      console.error('Error getting latest crypto quotes')
+      return
+    }
+
+    gotPayloadTimes++
+    payload = r.payload
+    document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
+    btc.innerText = r.payload.btc
+    eth.innerText = r.payload.eth
+    bnb.innerText = r.payload.bnb
+    xrp.innerText = r.payload.xrp
+    sol.innerText = r.payload.sol
+  })
+
+setInterval(() => {
+  btc.innerText = formatWithCommas(doMathBtc(payload.btc))
+  eth.innerText = formatWithCommas(doMathEth(payload.eth))
+  bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
+}, 3500)
+setInterval(() => {
+  if (gotPayloadTimes === 1) return  // TODO: change to 3
+  fetch('/server.php')
+    .then(r => r.json())
+    .then(r => {
+      if (r.status === 'ERR') {
+        console.error('Error getting latest crypto quotes')
+        return
+      }
+
+      gotPayloadTimes++
+      payload = r.payload
+      btc.innerText = r.payload.btc
+      eth.innerText = r.payload.eth
+      bnb.innerText = r.payload.bnb
+      xrp.innerText = r.payload.xrp
+      sol.innerText = r.payload.sol
+    })
+}, 32000)
 
 let lastHistoryState = history.state;
 window.addEventListener('popstate', (e) => {
@@ -162,9 +213,9 @@ closeBtn.onclick = () => {
   btnSubmitInnerText.innerHTML = 'Вывести средства'
   btnSubmit.disabled = false
   enableScrollEvents()
-  setTimeout(() => {
-    alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
-  }, 600)
+  // setTimeout(() => {
+  //   alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
+  // }, 600)
 }
 overlay.onclick = () => {
   overlay.classList.remove('overlay--db')
@@ -174,9 +225,9 @@ overlay.onclick = () => {
   btnSubmitInnerText.innerHTML = 'Вывести средства'
   btnSubmit.disabled = false
   enableScrollEvents()
-  setTimeout(() => {
-    alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
-  }, 600)
+  // setTimeout(() => {
+  //   alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
+  // }, 600)
 }
 
 /** SELECT **/
@@ -186,11 +237,6 @@ select.addEventListener('change', function() {
   if (selectedValue !== "") this.className = 'select-color-chosen'
   else this.className = ''
 })
-
-/** FETCH **/
-fetch('/server.php')
-  .then(r => r.json())
-  .then(r => console.log(r))
 
 
 // function add300AndFormat(numberStr) {
@@ -208,9 +254,75 @@ fetch('/server.php')
 //   return formattedResult;
 // }
 
-// console.log(add300AndFormat('18,374'))
-// console.log(add300AndFormat('322'))
-// console.log(add300AndFormat('94,5'))
+
+function doMathBtc(strNum) {
+  const num = parseFloat(strNum.replace(/,/g, ''))
+
+  const op = getRandomBoolean() ? '+' : '-'
+  const pingPong = getRandomNumberBetween5And25()
+  let res = 0
+  if (op === '+') {
+    res = num + pingPong
+  } else {
+    res = num - pingPong
+  }
+
+  return res.toFixed(2)
+}
+function doMathEth(strNum) {
+  const num = parseFloat(strNum.replace(/,/g, ''))
+
+  const op = getRandomBoolean() ? '+' : '-'
+  const pingPong = getRandomNumberBetween0And3()
+  let res = 0
+  if (op === '+') {
+    res = num + pingPong
+  } else {
+    res = num - pingPong
+  }
+
+  return res.toFixed(2)
+}
+function doMathBnb(strNum) {
+  const num = parseFloat(strNum.replace(/,/g, ''))
+
+  const op = getRandomBoolean() ? '+' : '-'
+  const pingPong = getRandomNumberBetween0And1()
+  let res = 0
+  if (op === '+') {
+    res = num + pingPong
+  } else {
+    res = num - pingPong
+  }
+
+  return res.toFixed(2)
+}
+function getRandomNumberBetween5And25() {
+  return Math.random() * 20 + 5;
+}
+function getRandomNumberBetween0And3() {
+  return Math.random() * 3;
+}
+function getRandomNumberBetween0And1() {
+  return Math.random();
+}
+function getRandomBoolean() {
+  return Math.random() >= 0.5;
+}
+function formatWithCommas(num) {
+  // Convert to string if it's a number
+  const numStr = typeof num === 'number' ? num.toString() : num;
+  
+  // Split into integer and decimal parts
+  const parts = numStr.split('.');
+  let integerPart = parts[0];
+  const decimalPart = parts.length > 1 ? `.${parts[1]}` : '';
+
+  // Add commas every 3 digits from the right
+  integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  return integerPart + decimalPart;
+}
 
 function preventDefaultScroll(e) {
   e.preventDefault();
