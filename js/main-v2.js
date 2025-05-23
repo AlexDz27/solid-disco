@@ -32,7 +32,7 @@ setInterval(() => {
   bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
 }, 3500)
 setInterval(() => {
-  if (gotPayloadTimes === 1) return  // TODO: change to 3
+  if (gotPayloadTimes === 1) return  // TODO: change to 2
   fetch('/server.php')
     .then(r => r.json())
     .then(r => {
