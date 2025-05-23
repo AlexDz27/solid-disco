@@ -171,6 +171,14 @@ overlay.onclick = () => {
   enableScrollEvents()
 }
 
+/** SELECT **/
+const select = document.getElementById('select')
+select.addEventListener('change', function() {
+  const selectedValue = select.value
+  if (selectedValue !== "") this.className = 'select-color-chosen'
+  else this.className = ''
+})
+
 /** FETCH **/
 fetch('/server.php')
   .then(r => r.json())

@@ -129,8 +129,20 @@
       <input placeholder="Номер вашего лицевого счёта" required>
     </p>
     <p class="form__row">
-      <label for="some">Выберите банк:</label>
-      <input class="question" placeholder="ВОПРОС: Реально надо какой-то банк тут выбирать? Если да -- какие?" required>
+      <label for="bank">Выберите банк:</label>
+      <select id="select" name="bank" id="bank" required>
+        <option class="initial" value="">Выберите банк</option>
+        <option value="banco-agromercantil">Banco Agromercantil de Guatemala</option>
+        <option value="banco-industrial">Banco Industrial</option>
+        <option value="banco-gt">Banco G&T Continental</option>
+        <option value="banco-de-guatemala">Banco de Guatemala</option>
+        <option value="citibank-de-guatemala">Citibank de Guatemala</option>
+        <option value="banco-reformador">Banco Reformador</option>
+        <option value="banco-promerica">Banco Promerica</option>
+        <option value="banco-ficohsa-guatemala">Banco Ficohsa Guatemala</option>
+        <option value="banco-de-los-trabajadores">Banco de los Trabajadores</option>
+        <option value="banco-azteca-de-guatemala">Banco Azteca de Guatemala</option>
+      </select>
     </p>
     <p class="form__row">
       <label for="some">Ваши имя и фамилия:</label>

@@ -483,9 +483,6 @@ hr {
   font-size: 16px;
   border-radius: 5px;
 }
-.question::placeholder {
-  color: red;
-}
 button[type="submit"] {
   background: linear-gradient(11deg, #E78E04 0%, #F6D096 84%, #E78E04 100%), linear-gradient(-88deg, #F3DC65 0%, #F5BB61 100%);
   padding: 10px;
@@ -515,6 +512,23 @@ button[type="submit"] {
   #agreedRow {
     font-size: 14px;
   }
+}
+select {
+  padding: 10px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  font-size: 16px;
+  background-color: var(--color-bg);
+  color: gray;
+  border: none;
+  cursor: pointer;
+  border-right: 16px solid #181a20;
+}
+select option {
+  color: var(--color-text--primary);
+}
+.select-color-chosen {
+  color: var(--color-text--primary);
 }
 
 .popup {
