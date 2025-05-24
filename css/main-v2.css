@@ -70,8 +70,8 @@ header a {
   display: none;
   margin-left: auto;
 }
-@media (max-width: 742px) {
-  header > a {
+@media (max-width: 960px) {
+  header > div {
     display: none;
   }
   header .logo {display: inline;}
@@ -95,6 +95,7 @@ header a {
   left: -220px;
   background-color: #1e2329;
   padding: 24px;
+  padding-top: 12px;
   box-shadow: 0px 8px 8px 0px rgba(24,26,32,.08);
   grid-template-columns: 1fr 1fr;
   column-gap: 26px;
@@ -591,6 +592,7 @@ select option {
 }
 
 .popup {
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -602,7 +604,11 @@ select option {
   transition: transform .5s;
   z-index: 100;
 }
+.popup--db {
+  display: block;
+}
 .popup--active {
+  display: block;
   transform: translate(-50%, -50%);
 }
 .popup__h2 {
@@ -673,6 +679,75 @@ select option {
 }
 .dropdown__item:hover .dropdown__arrow--academy {
   right: -67px;
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  background-color: #202630;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.mobile-nav--active {
+  display: block;
+}
+.mobile-nav-padding {
+  padding: 20px;
+  padding-bottom: 0;
+}
+.mobile-nav__row {
+
+}
+.mobile-nav__row > a {
+  padding: 20px 0;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 50px;
+  position: relative;
+}
+.mobile-nav__row > a svg {
+  fill: #707a8a;
+}
+.mobile-nav__row > a:hover svg {
+  fill: #EAECEF;
+}
+.mobile-nav__row > a:hover {
+  background-color: #29313d;
+  color: inherit;
+}
+.mobile-nav__row--times {
+  text-align: right;
+}
+.mobile-nav__times {
+  font-size: 38px;
+}
+.mobile-nav__dropdown-icon {
+  position: absolute;
+  right: 30px;
+}
+.mobile-nav__row--w-dropdown--active .mobile-nav__dropdown {
+  display: block;
+}
+.mobile-nav__row--w-dropdown--active .mobile-nav__dropdown-icon {
+  transform: rotate(180deg);
+}
+.mobile-nav__dropdown {
+  display: none;
+}
+.mobile-nav__dropdown .mobile-nav__row > a {
+  font-size: 14px;
+  padding: 16px 0;
+  padding-left: 75px;
+}
+.mobile-nav__icon {
+  position: absolute;
+  left: 19px;
+  top: 16px;
 }
 
 /** LAYOUT **/

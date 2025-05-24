@@ -152,7 +152,24 @@ input.addEventListener('keydown', (e) => {
   if (e.key == 'Enter') btn.click()
 })
 
-/** FOOTER MOBILE **/
+/** MOBILE NAV **/
+const mobileNav = document.querySelector('.mobile-nav')
+const mobileNavBtn = document.querySelector('.header__nav-btn')
+const mobileNavBtnClose = document.querySelector('.mobile-nav__times')
+mobileNavBtn.onclick = () => {
+  mobileNav.classList.add('mobile-nav--active')
+}
+mobileNavBtnClose.onclick = () => {
+  mobileNav.classList.remove('mobile-nav--active')
+}
+document.querySelectorAll('.mobile-nav__row--w-dropdown').forEach(i => {
+  i.onclick = (e) => {
+    if (e.target.tagName === 'A') return
+    i.classList.toggle('mobile-nav__row--w-dropdown--active')
+  }
+})
+
+/** MOBILE FOOTER **/
 const footerMobRows = document.querySelectorAll('.footer--mob__row')
 for (const row of footerMobRows) {
   row.addEventListener('click', (e) => {
@@ -192,6 +209,8 @@ form.onsubmit = (e) => {
     overlay.classList.add('overlay--db')
     void overlay.offsetWidth
     overlay.classList.add('overlay--blur')
+    popup.classList.add('popup--db')
+    void popup.offsetWidth
     popup.classList.add('popup--active')
     disableScrollEvents()
   }, 650)
@@ -208,6 +227,7 @@ const closeBtn = document.getElementById('closeBtn')
 closeBtn.onclick = () => {
   overlay.classList.remove('overlay--db')
   overlay.classList.remove('overlay--blur')
+  popup.classList.remove('popup--db')
   popup.classList.remove('popup--active')
   btnSubmit.style.padding = '10px'
   btnSubmitInnerText.innerHTML = 'Вывести средства'
@@ -220,6 +240,7 @@ closeBtn.onclick = () => {
 overlay.onclick = () => {
   overlay.classList.remove('overlay--db')
   overlay.classList.remove('overlay--blur')
+  popup.classList.remove('popup--db')
   popup.classList.remove('popup--active')
   btnSubmit.style.padding = '10px'
   btnSubmitInnerText.innerHTML = 'Вывести средства'
