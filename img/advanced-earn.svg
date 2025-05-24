@@ -1,0 +1,7 @@
+<svg class="header-nav-subicon_icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<path d="M18 10H21V21H18V10Z" fill="#F0B90B"></path>
+      <path d="M13 15H16V21H13V15Z" fill="white"></path>
+      <path d="M8 18H11V21H8V18Z" fill="white"></path>
+      <path d="M3 15H6V21H3V15Z" fill="white"></path>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0195 3V8.01953L9.20715 6.20715L3 12.4143V9.58588L7.79294 4.79294L6 3H11.0195ZM21.0195 8.01953V3H16L17.7929 4.79294L11 11.5859L8.70712 9.29297L7.29291 10.7072L11 14.4143L19.2072 6.20715L21.0195 8.01953Z" fill="white"></path>
+</svg>

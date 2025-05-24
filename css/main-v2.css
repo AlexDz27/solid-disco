@@ -55,7 +55,6 @@ header {
   font-size: 14px;
   height: 64px;
   display: flex;
-  align-items: center;
   position: sticky;
   top: 0;
   background-color: var(--color-bg);
@@ -86,16 +85,62 @@ header a {
 .link-w-dropdown {
   position: relative;
 }
-.link-w-dropdown:hover svg {
+.link-w-dropdown__link:hover svg {
   transform: rotate(180deg);
 }
 .link-w-dropdown__dropdown {
+  display: none;
   position: absolute;
   top: 64px;
-  left: 15px;
+  left: -220px;
   background-color: #1e2329;
   padding: 24px;
   box-shadow: 0px 8px 8px 0px rgba(24,26,32,.08);
+  grid-template-columns: 1fr 1fr;
+  column-gap: 26px;
+  width: 608px;
+  box-sizing: border-box;
+}
+.link-w-dropdown__dropdown--col-1 {
+  grid-template-columns: 1fr;
+  width: 316px;
+}
+.link-w-dropdown__dropdown--future {
+  padding-bottom: 0;
+  left: -120px;
+}
+.link-w-dropdown__dropdown--earn {
+  padding-bottom: 0;
+  left: -70px;
+}
+.link-w-dropdown__link:hover + .link-w-dropdown__dropdown {
+  display: grid;
+}
+.link-w-dropdown__dropdown:hover {
+  display: grid;
+}
+.dropdown__item {
+  /* display: flex; */
+  display: block;
+  padding-left: 24px;
+  height: auto;
+  margin-bottom: 20px;
+}
+.dropdown__item:hover {
+  color: inherit;
+}
+.dropdown__item__title {
+  position: relative;
+}
+.dropdown__item__title__img {
+  position: absolute;
+  left: -28px;
+  top: -4px;
+}
+.dropdown__item__text {
+  font-size: 12px;
+  line-height: 18px;
+  color: #848e9c;
 }
 
 .main {
@@ -593,6 +638,41 @@ select option {
 }
 .dol--active {
   visibility: visible;
+}
+
+.dropdown__feature-title {
+  position: relative;
+}
+.dropdown__icon-fix {
+  max-width: 24px;
+  max-height: 24px;
+  object-fit: contain;
+}
+.dropdown__bad-icon {
+  transform: scale(0.9);
+}
+.dropdown__bad-icon--2 {
+  transform: scale(0.8);
+}
+.dropdown__arrow {
+  display: inline-block;
+  width: 18px;
+  height: 20px;
+  position: absolute;
+  top: -2px;
+  right: -14px;
+  transition: all .3s ease-in-out;
+  opacity: 0;
+}
+.dropdown__arrow--academy {
+  right: -47px;
+}
+.dropdown__item:hover .dropdown__arrow {
+  opacity: 1;
+  right: -27px;
+}
+.dropdown__item:hover .dropdown__arrow--academy {
+  right: -67px;
 }
 
 /** LAYOUT **/
