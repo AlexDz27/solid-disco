@@ -12,11 +12,11 @@ fetch('/server.php')
     if (r.status === 'ERR') {
       console.error('Error getting latest crypto quotes')
       document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
-      btc.innerText = '108,787.81'
-      eth.innerText = '2,554.80'
-      bnb.innerText = '674.14'
-      xrp.innerText = '2.35'
-      sol.innerText = '176.35'
+      btc.innerText = '109,772.72'
+      eth.innerText = '2,565.03'
+      bnb.innerText = '674.47'
+      xrp.innerText = '2.34'
+      sol.innerText = '177.79'
       return
     }
 
