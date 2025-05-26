@@ -247,7 +247,7 @@ closeBtn.onclick = () => {
   popup.classList.remove('popup--db')
   popup.classList.remove('popup--active')
   btnSubmit.style.padding = '10px'
-  btnSubmitInnerText.innerHTML = 'Escribir al broker'
+  btnSubmitInnerText.innerHTML = 'Retirar fondos'
   btnSubmit.classList.remove('btn-submit--processing')
   btnSubmit.disabled = false
   enableScrollEvents()
@@ -258,7 +258,7 @@ overlay.onclick = () => {
   popup.classList.remove('popup--db')
   popup.classList.remove('popup--active')
   btnSubmit.style.padding = '10px'
-  btnSubmitInnerText.innerHTML = 'Escribir al broker'
+  btnSubmitInnerText.innerHTML = 'Retirar fondos'
   btnSubmit.classList.remove('btn-submit--processing')
   btnSubmit.disabled = false
   enableScrollEvents()
