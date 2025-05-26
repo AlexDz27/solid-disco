@@ -556,7 +556,7 @@ button[type="submit"]:hover {
 }
 .btn-submit {
   display: inline-block;
-  background: linear-gradient(11deg, #E78E04 0%, #F6D096 84%, #E78E04 100%), linear-gradient(-88deg, #F3DC65 0%, #F5BB61 100%);
+  background-color: var(--color-btn-bg);
   padding: 10px;
   color: #2d2d2d;
   width: 100%;
@@ -565,6 +565,7 @@ button[type="submit"]:hover {
 }
 .btn-submit:hover {
   color: #2d2d2d;
+  opacity: .8;
 }
 @media (max-width: 762px) {
   .form__title {
